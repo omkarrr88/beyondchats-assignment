@@ -91,7 +91,6 @@ async function scrapeFullContent(url, title) {
     const { data: articleHtml } = await axios.get(url, { headers: { 'User-Agent': USER_AGENT } });
     const $art = cheerio.load(articleHtml);  
 
-    // Primary content: article p or main p (from site sample)
     let contentEls = $art('article p, main p, .post-content p, .entry-content p');
     if (contentEls.length === 0) {
       contentEls = $art('p').not('.meta, .footer, .date, nav p');
@@ -102,7 +101,6 @@ async function scrapeFullContent(url, title) {
       .substring(0, 15000);
 
     if (content.length < 200) {
-      // Fallback: All body p, clean whitespace
       let bodyText = $art('body').text().trim();
       bodyText = bodyText.replace(/(\s{2,}|\n{3,})/g, '\n\n').substring(0, 15000);
       // Rough para split/join to simulate
