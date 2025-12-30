@@ -11,7 +11,7 @@
 
 **🎯 Full-Stack AI Content Enhancement Platform | BeyondChats Internship Assignment**
 
-[Live Demo](#-live-demo) • [Features](#-key-features) • [Tech Stack](#-tech-stack) • [Installation](#-installation--setup-guide) • [Architecture](#-architecture) • [Contributing](#-contributing)
+[Live Demo](#-installation--setup-guide) • [Features](#-key-features) • [Tech Stack](#-tech-stack) • [Installation](#-installation--setup-guide) • [Architecture](#-architecture--data-flow) • [Contributing](#-contributing)
 
 </div>
 
@@ -242,6 +242,16 @@ beyondchats-assignment/
 ---
 
 ## 🔧 Installation & Setup Guide
+
+### 🌐 Deployment & Usage Notes
+
+- **Frontend (Vercel)**: Live at [https://beyondchats-blog-enhancer.vercel.app](https://beyondchats-blog-enhancer.vercel.app). Fully static, instant loads globally.
+- **Backend (Render Free Tier)**: API at [https://beyondchats-api-gdun.onrender.com/api/articles](https://beyondchats-api-gdun.onrender.com/api/articles). Uses free hosting, which sleeps after ~15 min inactivity (wakes in 10-30s on first request).
+  - **Quick Tip for Viewers**: If articles don't load immediately, visit the backend URL first (it "wakes" the server), then refresh frontend. I've set up auto-pings for reliability, but manual wake ensures smooth demo.
+- **Data**: Seeded with 5 oldest BeyondChats articles (2023) + AI enhancements. MongoDB Atlas (prod cluster) persists across deploys.
+- **Local Testing**: Run `npm start` in frontend/backend—mirrors deployed setup.
+
+---
 
 ### ✅ Prerequisites
 
