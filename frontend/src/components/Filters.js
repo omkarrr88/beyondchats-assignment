@@ -1,24 +1,30 @@
-// src/components/Filters.js
-import React from 'react';
+"use client"
 
-const Filters = ({ setSort, view, setView, setPerPage }) => {
+const Filters = ({ setSort, view, setView }) => {
   return (
-    <div className="flex flex-col sm:flex-row justify-between mb-8 gap-4">
-      <select onChange={(e) => setSort(e.target.value)} className="px-4 py-2 rounded-lg border dark:bg-gray-800 dark:text-white dark:border-gray-600">
+    <div className="flex flex-col md:flex-row gap-4 md:gap-6 mb-8">
+      {/* View Filter */}
+      <select
+        value={view}
+        onChange={(e) => setView(e.target.value)}
+        className="input-base bg-white dark:bg-gray-800 px-4 py-3 rounded-lg font-medium cursor-pointer hover:border-blue-400 dark:hover:border-blue-500 transition-all duration-200"
+      >
+        <option value="both">Both (Original & AI-Enhanced)</option>
+        <option value="original">Original Only</option>
+        <option value="ai">AI-Enhanced Only</option>
+      </select>
+
+      {/* Sort Filter */}
+      <select
+        onChange={(e) => setSort(e.target.value)}
+        defaultValue="date-desc"
+        className="input-base bg-white dark:bg-gray-800 px-4 py-3 rounded-lg font-medium cursor-pointer hover:border-blue-400 dark:hover:border-blue-500 transition-all duration-200"
+      >
         <option value="date-desc">Newest First</option>
         <option value="date-asc">Oldest First</option>
       </select>
-      <select onChange={(e) => setView(e.target.value)} className="px-4 py-2 rounded-lg border dark:bg-gray-800 dark:text-white dark:border-gray-600">
-        <option value="original">Original</option>
-        <option value="updated">AI-Enhanced</option>
-      </select>
-      <select onChange={(e) => setPerPage(e.target.value)} className="px-4 py-2 rounded-lg border dark:bg-gray-800 dark:text-white dark:border-gray-600">
-        <option value="3">3 per page</option>
-        <option value="5">5 per page</option>
-        <option value="all">All</option>
-      </select>
     </div>
-  );
-};
+  )
+}
 
-export default Filters;
+export default Filters

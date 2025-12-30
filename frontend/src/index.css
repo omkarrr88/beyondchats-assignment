@@ -1,17 +1,164 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+/* Color system for light and dark modes */
+:root {
+  --color-primary: #2563eb;
+  --color-primary-dark: #1e40af;
+  --color-bg-light: #ffffff;
+  --color-bg-light-secondary: #f9fafb;
+  --color-bg-dark: #111827;
+  --color-bg-dark-secondary: #1f2937;
+  --color-text-light: #1f2937;
+  --color-text-light-secondary: #6b7280;
+  --color-text-dark: #f3f4f6;
+  --color-text-dark-secondary: #d1d5db;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Smooth transitions for theme switching */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom utilities for enhanced styling */
+@layer components {
+  .btn-primary {
+    @apply px-6 py-3 rounded-lg font-semibold bg-blue-600 text-white hover:bg-blue-700 transition-all duration-200 transform hover:scale-105 active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 rounded-lg font-semibold bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-200 active:scale-95;
+  }
+
+  .card-base {
+    @apply bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300;
+  }
+
+  .input-base {
+    @apply px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-800 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 dark:focus:ring-offset-gray-900 transition-all duration-200;
+  }
+
+  .comparison-container {
+    @apply grid grid-cols-1 lg:grid-cols-2 gap-6;
+  }
+
+  .comparison-card {
+    @apply bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 shadow-md;
+  }
+
+  .comparison-card-enhanced {
+    @apply bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900 dark:to-indigo-900 rounded-2xl p-6 shadow-md;
+  }
+
+  .comparison-header {
+    @apply flex items-center gap-2 mb-4 pb-4 border-b-2 border-gray-200 dark:border-gray-700;
+  }
+
+  .comparison-badge {
+    @apply px-3 py-1 rounded-full text-sm font-semibold text-white bg-gray-400;
+  }
+
+  .comparison-badge-enhanced {
+    @apply bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-3 py-1 rounded-full text-sm font-semibold;
+  }
+
+  /* Added new utility classes for better UX */
+  .btn-icon {
+    @apply inline-flex items-center justify-center rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200;
+  }
+
+  .badge-base {
+    @apply inline-block px-3 py-1 rounded-full text-xs font-semibold;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent;
+  }
+
+  .smooth-transition {
+    @apply transition-all duration-300 ease-in-out;
+  }
+}
+
+/* Smooth animations for modals */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-enter {
+  animation: slideIn 0.3s ease-out;
+}
+
+.modal-backdrop {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Better responsive typography */
+@media (max-width: 640px) {
+  html {
+    font-size: 14px;
+  }
+
+  .prose {
+    @apply text-sm;
+  }
+
+  h1 {
+    @apply text-2xl;
+  }
+
+  h2 {
+    @apply text-xl;
+  }
+
+  h3 {
+    @apply text-lg;
+  }
+}
+
+/* Improved focus-visible for better accessibility */
+button,
+a,
+input {
+  @apply focus:outline-none;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  @apply ring-2 ring-blue-500 ring-offset-2 dark:ring-offset-gray-900 rounded;
+}
